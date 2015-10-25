@@ -1,96 +1,99 @@
 // A tree is balanced if the difference between the depths of any two leaf nodes is no greater than one.
 
-class Node{
+public class IsBalanced{
+
+
+	class Node{
 	
- 	Node left;
-  	Node right;
-  	Object value;
-}	
+ 		Node left;
+  		Node right;
+  		Object value;
+	}	
 	
 	
-// Depth-First Search
-public boolean IsBalanced_DFS(Node root){
+	// Depth-First Search
+	public boolean IsBalanced_DFS(Node root){
     	
-  	if(root == null) return true;
+  		if(root == null) return true;
         
-  	Integer first_leaf_height = null;
+  		Integer first_leaf_height = null;
     	
-	Deque<Map.Entry<Node,Integer>> stack = new ArrayDeque<Map.Entry<Node,Integer>>();
+		Deque<Map.Entry<Node,Integer>> stack = new ArrayDeque<Map.Entry<Node,Integer>>();
         
-  	stack.push(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
+  		stack.push(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
         
-  	while (!stack.isEmpty()){
+  		while (!stack.isEmpty()){
         	
-    		Map.Entry<Node,Integer> tuple = stack.pop();
+    			Map.Entry<Node,Integer> tuple = stack.pop();
         	
-    		Node head = tuple.getKey();
-    		Integer depth = tuple.getValue();
+    			Node head = tuple.getKey();
+    			Integer depth = tuple.getValue();
             
-    		if(head.left != null){
-      		stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));
-    		} 
-    		if(head.right != null){
-      		stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
-    		} 
+    			if(head.left != null){
+      			stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));
+    			} 
+    			if(head.right != null){
+      			stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
+    			} 
             
-    		if (head.left == null && head.right == null){
+    			if (head.left == null && head.right == null){
             	
-      			if (first_leaf_height == null){ 
-        			first_leaf_height = depth;
+      				if (first_leaf_height == null){ 
+        				first_leaf_height = depth;
+      				}
+      				else{
+        				if ( Math.abs(depth - first_leaf_height) > 1) return false;
+        			}
       			}
-      			else{
-        			if ( Math.abs(depth - first_leaf_height) > 1) return false;
-        		}
-      		}
-  	}
+  		}
   	
-        return true;
-}
+        	return true;
+	}
 
 
-// Breadth-First Search
+	// Breadth-First Search
 
-public boolean IsBalanced_BFS(Node root){
+	public boolean IsBalanced_BFS(Node root){
 	
-	if (root == null) return true;
+		if (root == null) return true;
 	
-	Integer min_leaf_height = null;
+		Integer min_leaf_height = null;
 	
-	Queue<Map.Entry<Node,Integer>> q = new ArrayDeque<Map.Entry<Node,Integer>>();
+		Queue<Map.Entry<Node,Integer>> q = new ArrayDeque<Map.Entry<Node,Integer>>();
 	
-	q.add(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
+		q.add(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
 	
-	while (!q.isEmpty()){
+		while (!q.isEmpty()){
 		
-		Map.Entry<Node,Integer> tuple = q.remove();
+			Map.Entry<Node,Integer> tuple = q.remove();
 		
-		Node head = tuple.getKey();
-		Integer depth = tuple.getValue();
+			Node head = tuple.getKey();
+			Integer depth = tuple.getValue();
 		
-		if (head.left != null){
-			q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));	
-		}
-		if (head.right != null){
-			q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
-		}
+			if (head.left != null){
+				q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));	
+			}
+			if (head.right != null){
+				q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
+			}
 		
-		if (head.left == null && head.right == null){
+			if (head.left == null && head.right == null){
 			
-			if (min_leaf_height == null){ 
+				if (min_leaf_height == null){ 
 				
-				min_leaf_height = depth;	
-			}
-			else{
-				if ( Math.abs(depth - min_leaf_height) > 1) return false;	
-			}
+					min_leaf_height = depth;	
+				}
+				else{
+					if ( Math.abs(depth - min_leaf_height) > 1) return false;	
+				}
 			
+			}
+		
 		}
-		
-		
-		
+	
+		return true;
 	}
 	
-	return true;
 }
 
 

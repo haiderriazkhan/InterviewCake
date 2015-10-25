@@ -11,7 +11,7 @@ public class IsBalanced{
 	}	
 	
 	
-	// Depth-First Search
+	// Depth-First Search : Since it reaches leaves fatser, use DFS for most cases.
 	public boolean IsBalanced_DFS(Node root){
     	
   		if(root == null) return true;
@@ -51,8 +51,7 @@ public class IsBalanced{
 	}
 
 
-	// Breadth-First Search
-
+	// Breadth-First Search 
 	public boolean IsBalanced_BFS(Node root){
 	
 		if (root == null) return true;

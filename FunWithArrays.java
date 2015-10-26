@@ -6,7 +6,7 @@ public class FunWithArrays{
     
     int len = A.length;
     
-    if (len < 2) return null;
+    if (A == null || len < 2) return null;
     
     double min = A[0];
     double max_profit = A[1] - min;
@@ -30,7 +30,7 @@ public class FunWithArrays{
   }
   
   // Product of every integer except the integer at that index. Using division is not permitted. 
-  public int[] MaxProfit(int[] A){
+  public int[] prod_of_all_ints_except_at_index(int[] A){
     
     int len = A.length;
     
@@ -65,7 +65,38 @@ public class FunWithArrays{
     return A;
   }
   
+  // Product of every integer except the integer at that index. Use Division
+  public int[] prod_of_all_ints_except_at_index_div(int[] A){
+    
+    int len = A.length;
+    
+    if (A == null || len == 0) return null;
+    if (len == 1)return  new int[]{1};
+    
+    int tot_prod = 1;
+    int num_zeros = 0;
+    
+    for (int x : A){
+      
+      if (x == 0) {
+        continue;
+        num_zero ++;
+      }
+      tot_prod *= x;
+    }
+    
+    if (num_zero > 1) return new int[len];
+    
+    for (int i = 0; i < len; i++){
+      
+      
+      
+    }
+    
+  }
   
+  
+  // Equilibrium index of an array
   
   
 }

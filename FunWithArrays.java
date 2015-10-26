@@ -108,6 +108,7 @@ public class FunWithArrays{
   
   
   // Equilibrium index of an array
+  // Equilibrium index of an array is an index such that the sum of elements at lower indices is equal to the sum of elements at higher indices.
   public List<Integer> find_equilibrium(int[] A){
     
     if (A == null || A.length == 0) return null;

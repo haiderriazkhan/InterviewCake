@@ -4,9 +4,9 @@ public class FunWithArrays{
   // Maximum profit by buying and selling a stock 
   public Double MaxProfit(double[] A){
     
-    int len = A.length;
+    if (A == null || A.length < 2) return null;
     
-    if (A == null || len < 2) return null;
+    int len = A.length;
     
     double min = A[0];
     double max_profit = A[1] - min;
@@ -15,7 +15,7 @@ public class FunWithArrays{
     
     double potential_max_profit = 0;
     
-    for(int i=2; i < len ; i++){
+    for (int i=2; i < len ; i++) {
       
       if (A[i-1] < min) min = A[i-1];
       
@@ -32,17 +32,18 @@ public class FunWithArrays{
   // Product of every integer except the integer at that index. Using division is not permitted. 
   public int[] prod_of_all_ints_except_at_index(int[] A){
     
+    if (A == null || A.length == 0) return null;
+    
     int len = A.length;
     
-    if (A == null || len == 0) return null;
-    if (len == 1)return  new int[]{1};
+    if (len == 1) return  new int[]{1};
   
     
     int[] right_cum_prod = new int[len-1];
     
     int prev = 1;
     
-    for (int i = len-2; i >= 0; i--){
+    for (int i = len-2; i >= 0; i--) {
       
       intermediate[i] = A[i+1]*prev;
       prev = intermediate[i];
@@ -52,7 +53,7 @@ public class FunWithArrays{
     int left_cum_prod = 1;
     Integer curr_int = null; 
     
-    for(int j=0; j < len -1; j++ ){
+    for(int j=0; j < len -1; j++ ) {
     
       curr_int = A[j];
       A[j] = left_cum_prod * right_cum_prod[j];
@@ -67,16 +68,16 @@ public class FunWithArrays{
   
   // Product of every integer except the integer at that index. Use Division
   public int[] prod_of_all_ints_except_at_index_div(int[] A){
+  
+    if (A == null || A.length == 0) return null;
     
     int len = A.length;
-    
-    if (A == null || len == 0) return null;
     if (len == 1) return  new int[]{1};
     
     int tot_prod = 1;
     int num_zeros = 0;
     
-    for (int x : A){
+    for (int x : A) {
       
       if (x == 0) {
         
@@ -88,7 +89,7 @@ public class FunWithArrays{
     
     if (num_zero > 1) return new int[len];
     
-    for (int i = 0; i < len; i++){
+    for (int i = 0; i < len; i++) {
       
       if (num_zero == 1){
         
@@ -107,6 +108,33 @@ public class FunWithArrays{
   
   
   // Equilibrium index of an array
-  
+  public List<Integer> find_equilibrium(int[] A){
+    
+    if (A == null || A.length == 0) return null;
+    
+    int len = A.length;
+    if (len == 1) return  new int[1];
+    
+    int right_sum = 0;
+    
+    for (int x : A) right_sum += x;
+    
+    int left_sum = 0;
+    
+    List<Integer> equil_indices = new ArrayList<Integer>();
+    
+    for (int i = 0; i < len; i++) {
+      
+      right_sum -= A[i];
+      
+      if (left_sum == right_sum) equil_indices.add(i) ;
+      
+      left_sum += A[i]; 
+      
+    }
+    
+    return equil_indices;
+    
+  }
   
 }

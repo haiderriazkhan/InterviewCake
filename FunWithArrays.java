@@ -71,7 +71,7 @@ public class FunWithArrays{
     int len = A.length;
     
     if (A == null || len == 0) return null;
-    if (len == 1)return  new int[]{1};
+    if (len == 1) return  new int[]{1};
     
     int tot_prod = 1;
     int num_zeros = 0;
@@ -79,8 +79,9 @@ public class FunWithArrays{
     for (int x : A){
       
       if (x == 0) {
-        continue;
+        
         num_zero ++;
+        continue;
       }
       tot_prod *= x;
     }
@@ -89,9 +90,18 @@ public class FunWithArrays{
     
     for (int i = 0; i < len; i++){
       
+      if (num_zero == 1){
+        
+        A[i] = (A[i] == 0) ? tot_prod : 0;
+        continue;
+        
+      }
       
+      A[i] = tot_prod/A[i];
       
     }
+    
+    return A;
     
   }
   

@@ -175,12 +175,12 @@ public class FunWithArrays{
   
   // Helper method for StringMatch
   public double hashing (double value, int len, char old, char neww  ) {
-	
-	value -=  Math.pow(10, len-1) *  old  ;
-	value  = value*10 +   neww ;
-	return value;
-		
-   }
+  	
+  	value -=  Math.pow(10, len-1) *  old  ;
+  	value  = value*10 +   neww ;
+  	return value;
+   		
+  }
    
    
 	

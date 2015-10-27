@@ -114,7 +114,7 @@ public class FunWithArrays{
     if (A == null || A.length == 0) return null;
     
     int len = A.length;
-    if (len == 1) return  asList(0);
+    if (len == 1) return  Arrays.asList(0);
     
     int right_sum = 0;
     

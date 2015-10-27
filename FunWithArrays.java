@@ -138,4 +138,50 @@ public class FunWithArrays{
     
   }
   
+  
+  // Search text for a pattern. Rabin–Karp algorithm.
+  public Integer StringMatch(String text , String pattern){
+	  
+	  // Base case 1
+	  if (text == null || pattern == null ) return null;
+	  
+		int len = text.length();
+		int sublen = pattern.length();
+		
+		// Base case 2
+		if(sublen > len) return null;
+		
+		double subhash = 0 , hash = 0;
+		//pre-processing
+		for(int i=0; i<sublen; i++){
+			subhash = subhash*10 + pattern.charAt(i);
+			hash = hash*10 +  text.charAt(i);
+		}
+		
+		// Base case 3
+		if(hash == subhash) return 0;
+		
+		for(int j = 0; j < len - sublen; j++ ){
+			
+			hash = hashing(hash, sublen, text.charAt(j) , text.charAt(j + sublen));
+			
+			if(hash == subhash) return j+1;
+			
+			
+		}
+		
+		return null;
+	}
+	
+	// Helper method for StringMatch
+	public double hashing(double value, int len, char old, char neww  ){
+		
+		value -=  Math.pow(10, len-1) *  old  ;
+		value  = value*10 +   neww ;
+		return value;
+		
+	}
+	
+  
+  
 }

@@ -181,9 +181,32 @@ public class FunWithArrays{
   	return value;
    		
   }
+  
    
-   
+   // Given an array of ints A, and an int k, return two indices i and j such that A[i] + A[j] = k.
+   public int[] sum_indices(int[] A, int k){
+   	
+   	if (A == null || A.length == 0) return new int[0];
+
+	int len = A.length , j;
 	
+	HashMap<Integer, Integer> comp_val = new HashMap<Integer, Integer>(len);
+	   	
+	for (int i = 0; i < len; i++){
+	   		
+		if (A[i] > k) continue;
+	   		
+		if (comp_val.get(A[i]) != null) return new int[]{i , comp_val.get(A[i])};
+	   		
+	   	j = k - A[i];
+	   		
+	   	comp_val.put(j, i);
+	   		
+	}
+	   	
+	return new int[0];	
+	
+   }
   
   
 }

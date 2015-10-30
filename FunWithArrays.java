@@ -257,4 +257,6 @@ public class FunWithArrays{
   	
   	if (prod_one > prod_two) return prod_one ;
   	return prod_two;
+   }
+   
 }

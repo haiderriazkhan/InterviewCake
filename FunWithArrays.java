@@ -221,14 +221,14 @@ public class FunWithArrays{
 	
 	for (int i = 0; i < len; i++) {
 		
-		if (x > max) {
+		if (A[i] > max) {
 			
-			max = x;
+			max = A[i];
 			max_index = i;
 		}
-		else if (x < min) {
+		else if (A[i] < min) {
 			
-			min = x;
+			min = A[i];
 			min_index = i;
 		}
 	}

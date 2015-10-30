@@ -255,8 +255,8 @@ public class FunWithArrays{
   	int prod_one = max * max_sec * max_third ;
   	int prod_two = min * min_sec * max ;
   	
-  	if (prod_one > prod_two) return prod_one ;
-  	return prod_two;
+  	return Math.max(prod_one , prod_two) ;
+  	
    }
    
 }

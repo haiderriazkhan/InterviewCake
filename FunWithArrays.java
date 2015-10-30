@@ -217,88 +217,44 @@ public class FunWithArrays{
    	// Base case
    	if (len == 3) return A[0]*A[1]*A[2];
 	
-	int pos_first = 0, pos_second = 0, pos_third = 0 , neg_first = 0 , neg_second = 0;
-	
-	int min_first = Integer.MAX_VALUE, min_second = Integer.MAX_VALUE, min_third = Integer.MAX_VALUE;
-	
-	boolean arr_only_neg = true;
+	int max = A[0], min = A[0], max_index = 0, min_index = 0;
 	
 	for (int i = 0; i < len; i++) {
 		
-		
-		if (A[i] < 0) {
+		if (x > max) {
 			
-			if (Math.abs(A[i]) > neg_first) {
-				
-				neg_second = neg_first;
-				neg_first = A[i];
-				
-			}
-			else if (Math.abs(A[i]) > neg_second) {
-				
-				neg_second = A[i];
-				
-			}
-			
-			if (Math.abs(A[i]) < min_first) {
-				
-				min_third = min_second;
-				min_second = min_first;
-				min_first = A[i];
-				
-			}
-			else if (Math.abs(A[i]) < min_second) {
-				
-				min_third = min_second;
-				min_second = A[i];
-				
-			}
-			
-			else if (Math.abs(A[i]) < min_third) {
-				
-				min_third = A[i];
-			}
+			max = x;
+			max_index = i;
 		}
-		else {
-			arr_only_neg = false;
-				
-			if (A[i] > pos_first){
-				
-				pos_third = pos_second;
-				pos_second = pos_first;
-				pos_first = A[i];
-					
-			}
-			else if (A[i] > pos_second){
-				
-				pos_third = pos_second;
-				pos_second = A[i];
-			}
-			else if (A[i] > pos_third){
-				
-				pos_third = A[i];
-			}
+		else if (x < min) {
 			
+			min = x;
+			min_index = i;
 		}
-		
 	}
-	
-	// Check if array contains only negative numbers.
-	if (arr_only_neg) return min_first * min_second * min_third ;
-	
-	
-	prod_one = pos_first * pos_second * pos_third;
-	prod_two = neg_first * neg_second * pos_first;
-	
-	if (prod_one >= prod_two) {
-		
-		// The top three max numbers are positive.
-		return prod_one;
-	}
-	
-	return prod_two;
-   	
-   }
-  
-  
+  	
+  	int max_sec = min, max_third = min , min_sec = max;
+  	
+  	for (int i = 0; i < len; i++) {
+  		
+  		if (i == max_index || i == min_index) continue;
+  		
+  		if (A[i] > max_sec) {
+  			
+  			max_third = max_sec;
+  			max_sec = A[i];
+  		}
+  		else if (A[i] > max_third) {
+  			max_third = A[i];
+  		}
+  		
+  		if (A[i] < min_sec) min_sec = A[i];
+  		
+  	}
+  	
+  	int prod_one = max * max_sec * max_third ;
+  	int prod_two = min * min_sec * max ;
+  	
+  	if (prod_one > prod_two) return prod_one ;
+  	return prod_two;
 }

@@ -7,13 +7,13 @@ public class cashier {
 		
 		counter = 0;
 		
-		count_number_of_ways(amount , 0 ,  denominations);
+		count_number_of_ways(amount , 0 , 0,  denominations);
 		
 		number_of_ways_to_pay = counter;
 		
 	}
 	
-	private void count_number_of_ways(int amount, int acc, int[] denominations) {
+	private void count_number_of_ways(int amount, int acc, int index, int[] denominations) {
 		
 		if (acc > amount) return;
 		
@@ -24,9 +24,29 @@ public class cashier {
 			
 		}
 		
-		for (int x : denominations) {
+		
+		int len = denominations.size;
+		
+		while (acc < amount) {
 			
-			count_number_of_ways(amount, acc + x, denominations);
+			acc += denominations[index];
+		
+			for (int i = 1; i < len; i++) {
+			
+				
+				count_number_of_ways(amount, acc + denominations[i], index+1, denominations);
+				
+			
+			}
+			
+			if (curr > amount) return;
+			
+			if (curr == amount) {
+				
+				counter++;	
+				return;
+			}
+		
 			
 		}
 		

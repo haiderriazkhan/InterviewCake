@@ -30,7 +30,7 @@ public class MergeMeetings {
   			Integer prev_start_time = prev_meeting.getKey();
   			Integer prev_finish_time = prev_meeting.getValue();
   			
-  			if (start_time >= prev_start_time &&  start_time <= prev_finish_time) {
+  			if (start_time <= prev_finish_time) {
   				
   				if (finish_time > prev_finish_time) {
   					
@@ -42,7 +42,7 @@ public class MergeMeetings {
   				
   			}
   			
-			index++;
+			Merged_Meetings.add(++index, meeting);
 			
 		}
 		

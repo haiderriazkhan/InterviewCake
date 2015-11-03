@@ -29,7 +29,7 @@ public class cashier {
 		
 		while (acc < amount) {
 			
-			acc += denominations[index];
+			
 		
 			for (int i = 1; i < len; i++) {
 			
@@ -38,6 +38,8 @@ public class cashier {
 				
 			
 			}
+			
+			acc += denominations[index];
 			
 			if (acc > amount) return;
 			

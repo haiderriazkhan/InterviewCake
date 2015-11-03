@@ -31,10 +31,10 @@ public class cashier {
 			
 			
 		
-			for (int i = 1; i < len; i++) {
+			for (int i = index + 1; i < len; i++) {
 			
 				
-				count_number_of_ways(amount, acc + denominations[i], index+1, denominations);
+				count_number_of_ways(amount, acc + denominations[i], index + i, denominations);
 				
 			
 			}

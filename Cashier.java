@@ -39,9 +39,9 @@ public class cashier {
 			
 			}
 			
-			if (curr > amount) return;
+			if (acc > amount) return;
 			
-			if (curr == amount) {
+			if (acc == amount) {
 				
 				counter++;	
 				return;

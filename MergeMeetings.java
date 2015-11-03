@@ -1,5 +1,6 @@
 public class MergeMeetings {
 	
+	// Merge Meeting times that overlap. 
 	public List<Map.Entry<Integer,Integer>> merge_times(List<Map.Entry<Integer, Integer>> calendar) {
 		
 		// We will use a TreeMap to sort the meeeting times by their start time. 			
@@ -12,7 +13,7 @@ public class MergeMeetings {
 			
 		}
 		
-		// Iterate through the TreeMap and merge the times. 
+		// Iterate through the TreeMap and merge meetings that overlap and put them in the output List. 
 		
 		List<Map.Entry<Integer, Integer>> Merged_Meetings = ArrayList<AbstractMap.SimpleEntry<Integer,Integer>>();
 		

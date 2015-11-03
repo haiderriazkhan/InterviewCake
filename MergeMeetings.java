@@ -20,7 +20,7 @@ public class MergeMeetings {
 		
 		int index = 0;
 		
-		for (Map.Entry<Integer, Integer> meeting : Merged_Meetings.entrySet()) {
+		for (Map.Entry<Integer, Integer> meeting : Sorted_Meetings.entrySet()) {
 			
 			Integer start_time = meeting.getKey();
   			Integer finish_time = meeting.getValue();

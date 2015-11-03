@@ -3,7 +3,7 @@ public class cashier {
 	private int counter;
 	public final int number_of_ways_to_pay;
 	
-	public cashier(int amount, int[] denominations) {
+	public Cashier(int amount, int[] denominations) {
 		
 		counter = 0;
 		
@@ -25,7 +25,7 @@ public class cashier {
 		}
 		
 		
-		int len = denominations.size;
+		int len = denominations.length;
 		
 		while (acc < amount) {
 			

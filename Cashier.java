@@ -18,7 +18,7 @@ public class cashier {
 			for (int i = index + 1; i < len; i++) {
 			
 				
-				count += count_number_of_ways(amount, acc + denominations[i], index + i, denominations);
+				count += count_number_of_ways(amount, acc + denominations[i], i, denominations);
 				
 			
 			}

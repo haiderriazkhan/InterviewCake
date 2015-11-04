@@ -6,11 +6,7 @@ public class cashier {
 		
 		if (acc > amount) return 0;
 		
-		if (amount == acc) {
-			
-			return 1;
-			
-		}
+		if (amount == acc) return 1;
 		
 		
 		int len = denominations.length;

@@ -1,7 +1,7 @@
 public class cashier {
 	
 	
-	// Recursive solution
+	// Recursive solution. Exponential time complexity.
 	public int count_number_of_ways(int amount, int acc, int index,  int[] denominations) {
 		
 		if (acc > amount) return 0;
@@ -34,6 +34,25 @@ public class cashier {
 		return count + 0;
 		
 		
+	}
+	
+	
+	// Dynamic programming solution. O(m*n)
+	public int count_number_of_ways_dp(int amount, int[] denominations) {
+		
+		int[] number_of_ways = new int[amount+1];
+		number_of_ways[0] = 1;
+		
+		for (int x : denominations) {
+			
+			for (int i = x; i <= amount;  i++ ) {
+				int prev_amount = i - x;
+				number_of_ways[i] += number_of_ways[prev_amount];
+			}	
+			
+		}
+		
+		return number_of_ways[amount];
 	}
 	
 	

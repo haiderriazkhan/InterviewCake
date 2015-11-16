@@ -12,41 +12,7 @@ public class Love {
 		
 	}
 	
-	
-	// This method has a lot of redundancy. Can be refactored to be much cleaner. 
 	public Love_Rectangle strength_of_love(Love_Rectangle lover_one , Love_Rectangle lover_two) {
-		
-		Map.Entry<Integer, Integer> broader_rec;
-		List<Integer> slimmer_rec;
-		Map.Entry<Integer, Integer> longer_rec;
-		List<Integer> shorter_rec;
-		
-		if (lover_one.width  > lover_two.width ) {
-			
-			broader_rec = new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.x , lover_one.x + lover_one.width);
-			slimmer_rec = Arrays.asList(lover_two.x ,  lover_two.x + lover_two.width);
-						
-		}
-		else {
-			
-			slimmer_rec = Arrays.asList(lover_one.x , lover_one.x + lover_one.width);
-			broader_rec = new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.x , lover_two.x + lover_two.width);
-			
-		}
-		
-		if (lover_one.height > lover_two.height) {
-			
-			longer_rec = new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.y , lover_one.y + lover_one.height);
-			shorter_rec = Arrays.asList(lover_two.y , lover_two.y + lover_two.height);
-		}
-		else {
-			
-			shorter_rec = Arrays.asList(lover_one.y , lover_one.y + lover_one.height);
-			longer_rec  = new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.y , lover_two.y + lover_two.height);
-			
-		}
-		
-		
 		
 		Love_Rectangle love_strength = new Love_Rectangle();
 		love_strength.width = 0;
@@ -54,87 +20,78 @@ public class Love {
 		love_strength.x = -1;
 		love_strength.y = -1;
 		
+		Map.Entry<Integer, Integer> x_axis_intersection  = 	find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.x, lover_one.width)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.x, lover_two.width));
 		
-		List<Integer> intersections = new ArrayList<Integer>();
+		if (x_axis_intersection.getValue() == 0) return love_strength;
+		
+		Map.Entry<Integer, Integer> y_axis_intersection  = 	find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.y, lover_one.height)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.y, lover_two.height));
+		
+		if (y_axis_intersection.getValue() == 0) return love_strength;
 		
 		
-		for (int x : slimmer_rec) {
+		love_strength.width = x_axis_intersection.getValue();
+		love_strength.height = y_axis_intersection.getValue();
+		love_strength.x = x_axis_intersection.getKey();
+		love_strength.y = y_axis_intersection.getKey();
+		
+		return love_strength;
+		
+	}
+	
+	private Map.Entry<Integer, Integer> find_overlap_this_dim(Map.Entry<Integer, Integer> lover_one , Map.Entry<Integer, Integer> lover_two) {
+		
+		Map.Entry<Integer, Integer> longer_line;
+		List<Integer> shorter_line;
+		
+		if (lover_one.getValue() > lover_two.getValue()) {
 			
-			if (x >= broader_rec.getKey() && x <= broader_rec.getValue()) intersections.add(x);
+			longer_line = new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.getKey() , lover_one.getKey() + lover_one.getValue());
+			shorter_line = Arrays.asList(lover_two.getKey() , lover_two.getKey() + lover_two.getValue());
 			
 		}
+		else {
+			
+			longer_line = new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.getKey() , lover_two.getKey() + lover_two.getValue());
+			shorter_line = Arrays.asList(lover_one.getKey() , lover_one.getKey() + lover_one.getValue());
+			
+		}
+		
+		Map.Entry<Integer, Integer> overlap;
+		
+		
+		List<Integer> intersections = new ArrayList<Integer>(2);
+		
+		for (int x : shorter_line) {
+			
+			if (x >= longer_line.getKey() && x <= longer_line.getValue()) intersections.add(x);
+			
+		}
+		
 		
 		if (intersections.size() == 2) { 
 			
-			love_strength.width = slimmer_rec.get(1) - slimmer_rec.get(0);
-			love_strength.x = slimmer_rec.get(0);
+			return new AbstractMap.SimpleEntry<Integer , Integer>(shorter_line.get(0) , shorter_line.get(1) - shorter_line.get(0)) ;
+			
 		}
 		else if (intersections.size() == 0) {
 			
-			return love_strength;
-			
-		}
-		
-		boolean marked = true;
-		for (int y : shorter_rec) {
-			
-			marked = false;
-			if (y >= longer_rec.getKey() && y <= longer_rec.getValue()) intersections.add(y);
-			
-		}
-		
-		if (intersections.size() == 4) {
-			
-			love_strength.height = shorter_rec.get(1) - shorter_rec.get(0);
-			love_strength.y = shorter_rec.get(0);
-			
-			return love_strength;
-			
-		}
-		else if (marked) {
-			
-			love_strength.width = 0;
-			love_strength.x = -1;
-			return love_strength;
+			return new AbstractMap.SimpleEntry<Integer , Integer>(-1 , 0);
 			
 		}
 		
 		
-		if (love_strength.width == 0) {
+		if (intersections.get(0) == shorter_line.get(0)) {
 			
-			if (intersections.get(0) == slimmer_rec.get(0)) {
-				
-				love_strength.x = slimmer_rec.get(0);
-				love_strength.width = broader_rec.getValue() - love_strength.x;
-			}
-			else {
-				
-				love_strength.x = broader_rec.getKey();
-				love_strength.width = intersections.get(0) - love_strength.x;
-				
-			}
+			overlap = new AbstractMap.SimpleEntry<Integer , Integer>(shorter_line.get(0) , longer_line.getValue() - shorter_line.get(0));
+			
+		}
+		else {
+			
+			overlap = new AbstractMap.SimpleEntry<Integer , Integer>(longer_line.getKey() , shorter_line.get(1) - longer_line.getKey());
 			
 		}
 		
-		if (love_strength.height == 0) {
-			
-			if (intersections.get(1) == shorter_rec.get(0)) {
-				
-				love_strength.y = shorter_rec.get(0);
-				love_strength.height = longer_rec.getValue() - love_strength.y;
-				
-			}
-			else {
-				
-				love_strength.y = longer_rec.getKey();
-				love_strength.height = intersections.get(1) - love_strength.y;
-				
-			}
-			
-			
-		}
-		
-		return love_strength;
+		return overlap;
 		
 	}
 	

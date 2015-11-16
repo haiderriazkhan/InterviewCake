@@ -29,7 +29,7 @@ public class BinaryTrees {
 		
 	}
 	
-	public Integer MostFreq(Node root){
+	public Integer MostFreq(Node root) {
 		
 		Map<Integer , Integer> tracker = new HashMap<Integer , Integer>();
 		InOrderTraversal(root, tracker);
@@ -37,9 +37,10 @@ public class BinaryTrees {
 		Integer max = 0;
 		Integer elem = null;
 		
-		for(int x : tracker.keySet() )
+		for (int x : tracker.keySet() )
 			
-			if(tracker.get(x) > max){ 
+			if (tracker.get(x) > max) { 
+				
 				max = tracker.get(x) ; 
 				elem = x ;
 			}
@@ -47,18 +48,19 @@ public class BinaryTrees {
 		return elem;
 	}
 	
-	private void InOrderTraversal(Node node, HashMap<Integer,Integer> HM){
+	private void InOrderTraversal(Node node, HashMap<Integer,Integer> HM) {
 		
 		if(node == null) return;
 		
 		InOrderTraversal(node.left , HM);
 		
 		
-		if (HM.get(node.val) == null ){
+		if (HM.get(node.val) == null ) {
 			
 			HM.put(node.val, 1) ;
 			
-		}else{
+		}
+		else {
 			
 			HM.put(node.val , HM.get(node.val) + 1);
 		}

@@ -48,9 +48,9 @@ public class BinaryTrees {
 		return elem;
 	}
 	
-	private void InOrderTraversal(Node node, HashMap<Integer,Integer> HM) {
+	private void InOrderTraversal(Node node, Map<Integer,Integer> HM) {
 		
-		if(node == null) return;
+		if (node == null) return;
 		
 		InOrderTraversal(node.left , HM);
 		
@@ -67,6 +67,39 @@ public class BinaryTrees {
 		
 		
 		InOrderTraversal(node.right , HM);
+		
+	}
+	
+	
+	public boolean check_if_valid_binary_search_tree(Node root) {
+		
+		if (node == null) return true;
+		
+		List<Integer> ordered = new ArrayList<Integer>();
+		
+		InOrderTraversal_Add_to_List(root , ordered);
+		
+		Integer prev = ordered.get(0);
+		
+		for (Integer x : ordered) {
+			
+			if (x < prev) return false;
+			prev = x;
+			
+		}
+		
+		return true;
+	}
+	
+	private void InOrderTraversal_Add_to_List(Node node, List<Integer> ordered) {
+		
+		if (node == null) return;
+		
+		InOrderTraversal_Add_to_List(node.left , ordered);
+		
+		ordered.add(node);
+		
+		InOrderTraversal_Add_to_List(node.right , ordered);
 		
 	}
 	

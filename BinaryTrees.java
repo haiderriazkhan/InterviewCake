@@ -94,7 +94,7 @@ public class BinaryTrees {
 		bounds.max_bound = Integer.MIN_VALUE;
 		bounds.min_bound = Integer.MAX_VALUE;
 		
-		stack.add(bounds);
+		stack.push(bounds);
 		
 		while (!stack.isEmpty()) {
 			
@@ -112,7 +112,7 @@ public class BinaryTrees {
 				bounds.max_bound = curr_node.val;
 				bounds.min_bound = lower_bound;
 				
-				stack.add(bounds);
+				stack.push(bounds);
 				
 			}
 			
@@ -122,7 +122,7 @@ public class BinaryTrees {
 				bounds.min_bound = curr_node.val;
 				bounds.max_bound = upper_bound;
 				
-				stack.add(bounds);
+				stack.push(bounds);
 				
 			}
 			

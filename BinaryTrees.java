@@ -71,37 +71,70 @@ public class BinaryTrees {
 	}
 	
 	
-	public boolean check_if_valid_binary_search_tree(Node root) {
+	
+	private class Bounds {
+		
+		Node node;
+		int min_bound;
+		int max_bound;
+		
+	}
+	
+	
+	
+	public boolean check_if_valid_binary_search_tree(Node node) {
 		
 		if (node == null) return true;
 		
-		List<Integer> ordered = new ArrayList<Integer>();
+		Deque<Bounds> stack = new ArrayDeque<Bounds>();
 		
-		InOrderTraversal_Add_to_List(root , ordered);
+		Bounds bounds = new Bounds();
 		
-		Integer prev = ordered.get(0);
+		bounds.node = node;
+		bounds.max_bound = Integer.MIN_VALUE;
+		bounds.min_bound = Integer.MAX_VALUE;
 		
-		for (Integer x : ordered) {
+		stack.add(bounds);
+		
+		while (!stack.isEmpty()) {
 			
-			if (x < prev) return false;
-			prev = x;
+			bounds = stack.pop();
+			
+			Node curr_node = bounds.node;
+			int lower_bound = bounds.min_bound;
+			int upper_bound = bounds.max_bound;
+			
+			if (curr_node.val < lower_bound || curr_node.val > upper_bound) return false;
+			
+			if (curr_node.left != null) {
+				
+				bounds.node = curr_node.left;
+				bounds.max_bound = curr_node.val;
+				bounds.min_bound = lower_bound;
+				
+				stack.add(bounds);
+				
+			}
+			
+			if (curr_node.right != null) {
+				
+				bounds.node = curr_node.right;
+				bounds.min_bound = curr_node.val;
+				bounds.max_bound = upper_bound;
+				
+				stack.add(bounds);
+				
+			}
+			
 			
 		}
 		
+		
 		return true;
+		
 	}
 	
-	private void InOrderTraversal_Add_to_List(Node node, List<Integer> ordered) {
-		
-		if (node == null) return;
-		
-		InOrderTraversal_Add_to_List(node.left , ordered);
-		
-		ordered.add(node);
-		
-		InOrderTraversal_Add_to_List(node.right , ordered);
-		
-	}
+	
 	
   
 }

@@ -134,7 +134,38 @@ public class BinaryTrees {
 		
 	}
 	
-	
+	// Find the kth smallest element in a Binary Search Tree. The 0th element is defined to be the smallest.
+	public Node find_kth_element(Node root , int k) {
+		
+		if (root == null || k < 0) return null;
+		
+		Deque<Node> stack = new ArrayDeque<Node>();
+		stack.push(root);
+		
+		while (!stack.isEmpty()) {
+			
+			Node curr = stack.peek();
+			
+			if (curr.left != null) {
+				
+				stack.push(curr.left);
+				continue;
+			}
+			
+			if (k == 0) return curr;
+			stack.pop();
+			--k;
+			
+			if (curr.right != null) {
+				
+				stack.push(curr.right);
+				continue;	
+				
+			}
+			
+		}
+		
+	}
 	
   
 }

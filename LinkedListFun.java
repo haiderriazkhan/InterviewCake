@@ -34,7 +34,7 @@ public class LinkedListFun {
 		
 	}
 	
-	public <T> T find_kth_to_last_node(LinkedList<T> ll) {
+	public Node find_kth_to_last_node(Node head) {
 		
 		
 		

@@ -1,1 +1,9 @@
-
+public class LinkedList {
+	
+	
+	
+	
+	
+	
+	
+}

@@ -34,10 +34,38 @@ public class LinkedListFun {
 		
 	}
 	
-	public Node find_kth_to_last_node(Node head) {
+	public Node find_kth_to_last_node(Node head, int k) {
+		
+		if (head == null || k < 0) return null;	
+		
+		Node first = head;
+		Node second = head;
+		
+		int counter = k;
+		
+		while (counter > 0) {
+			
+			if (first.next != null ) {
+				
+				first = first.next;
+				--counter;
+			}
+			else {
+				return null;
+			}
+			
+		}
 		
 		
 		
+		while (true) {
+			
+			if (first.next == null) return second; 
+			
+			first = first.next;
+			second = second.next;	
+			
+		}
 		
 	}
 	

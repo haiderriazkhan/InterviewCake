@@ -159,7 +159,6 @@ public class BinaryTrees {
 			if (curr.right != null) {
 				
 				stack.push(curr.right);
-				continue;	
 				
 			}
 			

@@ -22,7 +22,11 @@ public class FunWithBits {
 		
 	}
 	
-	
+	public int increment_shortcut(int x) {
+		
+		return -(~x);
+		
+	}
 	
 	
 }

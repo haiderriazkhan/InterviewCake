@@ -30,8 +30,6 @@ public class FunWithBits {
 	
 	public int addition (int x , int y) {
 		
-		
-		
 		while (y != 0) {
 			
 			int carry = x & y;

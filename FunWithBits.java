@@ -30,12 +30,12 @@ public class FunWithBits {
 	
 	public int addition (int x , int y) {
 		
-		int sum = x;
+		
 		
 		while (y != 0) {
 			
 			int carry = x & y;
-			int sum = x ^ y;
+			x = x ^ y;
 			y = carry << 1;
 		}
 		

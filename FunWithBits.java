@@ -41,6 +41,12 @@ public class FunWithBits {
 		
 	}
 	
+	// return x - y
+	public int subtract (int x, int y) {
+		
+		
+		
+	}
 	
 	
 }

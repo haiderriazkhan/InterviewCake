@@ -39,7 +39,7 @@ public class FunWithBits {
 			y = carry << 1;
 		}
 		
-		return sum;
+		return x;
 		
 	}
 	

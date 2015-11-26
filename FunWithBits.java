@@ -75,4 +75,19 @@ public class FunWithBits {
 		return result;
 	}
 	
+	// Given an array, which contains integers, each number occurs exactly twice except for one, which doesn't repeat. 
+	// Write a function that finds the number that doesn't repeat.
+	
+	public int find_single (int[] A) {
+		
+		int result = 0;
+		
+		for (int x : A) {
+			
+			result ^= x;
+		}
+		
+		return result;
+	}
+	
 }

@@ -42,6 +42,7 @@ public class FunWithBits {
 	}
 	
 	// return x - y
+	// We use subtractor logic : A - B = A + (-B) = A + (~B) + 1 because ~B = -B - 1
 	public int subtract (int x, int y) {
 		
 		

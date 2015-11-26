@@ -45,8 +45,15 @@ public class FunWithBits {
 	// We use subtractor logic : A - B = A + (-B) = A + (~B) + 1 because ~B = -B - 1
 	public int subtract (int x, int y) {
 		
+		while (y != 0) {
+			
+			int borrow = (~x) & y;
+			x = x ^ y;
+			y = borrow << 1;
+			
+		}
 		
-		
+		return x;
 	}
 	
 	

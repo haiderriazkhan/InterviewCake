@@ -57,12 +57,22 @@ public class FunWithBits {
 	}
 	
 	
-	// Compute 2^(ceil(log2(x))). Which is equivalent to finding the lowest power of two that's greater than or equal to x. 
+	// Compute 2^(ceil(log2(x))). Which is equivalent to finding the lowest power of two that's greater than or equal to x.
+	// x will be > 0
 	public int lowest_power_of_two_greater_than_or_equal_to_x (int x) {
 		
+		// Invalid input. Return 0.
+		if (x <= 0) return 0;
 		
+		int result = 1;
 		
+		while (result < x && result != 0) {
+			
+			result <<= 1;
+			
+		}
 		
+		return result;
 	}
 	
 }

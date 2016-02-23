@@ -1,3 +1,8 @@
+// The diameter of a binary tree is defined to be the length of the longest path in the tree from one distinct leaf node to another (distinct) leaf node. 
+// Write a method to determine the diameter of a given binary tree.
+
+// Hint: To solve this problem, it might be useful to first write a method to determine the height of a binary tree. 
+// The height of a binary tree is defined to be the length of the longest path to a leaf node from the root node.
 public class BinaryTrees {
 	
 	public class Node {
@@ -8,6 +13,7 @@ public class BinaryTrees {
 		
 	}
 	
+	// Method to determine the height of a tree.
 	public int height(Node node) {
 
 		if (node == null) return 0;
@@ -15,6 +21,7 @@ public class BinaryTrees {
 		
 	}
 	
+	// Method to determine the diameter of a tree.
 	public int diameter(Node node) {
 		
 		if (node == null) return 0;

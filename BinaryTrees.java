@@ -91,7 +91,7 @@ public class BinaryTrees {
 	}
 	
 	
-	// Method to check if a binary tree is also a binary search tree (BST).
+	// Method to check if a binary tree is also a valid binary search tree (BST).
 	public boolean check_if_valid_binary_search_tree(Node node) {
 		
 		if (node == null) return true;

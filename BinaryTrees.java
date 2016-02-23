@@ -36,6 +36,9 @@ public class BinaryTrees {
 		
 	}
 	
+	
+	// Function to determine the most common (frequently occurring) value in a binary tree.
+	// Hint: We will be using the most important data structure ever invented. 
 	public Integer MostFreq(Node root) {
 		
 		Map<Integer , Integer> tracker = new HashMap<Integer , Integer>();
@@ -88,7 +91,7 @@ public class BinaryTrees {
 	}
 	
 	
-	
+	// Method to check if a binary tree is also a binary search tree (BST).
 	public boolean check_if_valid_binary_search_tree(Node node) {
 		
 		if (node == null) return true;
@@ -141,7 +144,8 @@ public class BinaryTrees {
 		
 	}
 	
-	// Find the kth smallest element in a Binary Search Tree. The 0th element is defined to be the smallest.
+	// Find the kth smallest node in a Binary Search Tree (BST). The 0th node is defined to be the smallest.
+	// The run time is O(n) while the space complexity is O(h) where h is the max height of the tree.
 	public Node find_kth_element(Node root , int k) {
 		
 		if (root == null || k < 0) return null;

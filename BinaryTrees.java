@@ -101,8 +101,8 @@ public class BinaryTrees {
 		Bounds bounds = new Bounds();
 		
 		bounds.node = node;
-		bounds.max_bound = Integer.MIN_VALUE;
-		bounds.min_bound = Integer.MAX_VALUE;
+		bounds.max_bound = Integer.MAX_VALUE;
+		bounds.min_bound = Integer.MIN_VALUE;
 		
 		stack.push(bounds);
 		

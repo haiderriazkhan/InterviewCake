@@ -93,7 +93,6 @@ public class BinaryTrees {
 			this.node = node;
 			this.lower_bound = lower_bound;
 			this.upper_bound = upper_bound;
-			
 		}
 		
 	}
@@ -119,7 +118,7 @@ public class BinaryTrees {
 			int lower_bound = current.lower_bound;
 			int upper_bound = current.upper_bound;
 			
-			if (curr_node.val < lower_bound || curr_node.val > upper_bound) return false;
+			if (curr_node.val <= lower_bound || curr_node.val >= upper_bound) return false;
 			
 			if (curr_node.left != null) {
 			

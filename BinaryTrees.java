@@ -96,7 +96,8 @@ public class BinaryTrees {
 		
 		if (node == null) return true;
 		
-		Deque<Bounds> stack = new ArrayDeque<Bounds>();
+		// The diamond operator on the right hand side infers the type parameter from the left hand side.
+		Deque<Bounds> stack = new ArrayDeque<>();
 		
 		Bounds bounds = new Bounds();
 		
@@ -111,8 +112,8 @@ public class BinaryTrees {
 			bounds = stack.pop();
 			
 			Node curr_node = bounds.node;
-			int lower_bound = bounds.min_bound;
 			int upper_bound = bounds.max_bound;
+			int lower_bound = bounds.min_bound;
 			
 			if (curr_node.val < lower_bound || curr_node.val > upper_bound) return false;
 			

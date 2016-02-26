@@ -85,8 +85,8 @@ public class BinaryTrees {
 	private class Bounds {
 		
 		Node node;
-		int min_bound;
-		int max_bound;
+		int lower_bound;
+		int upper_bound;
 		
 	}
 	
@@ -99,50 +99,50 @@ public class BinaryTrees {
 		// The diamond operator on the right hand side infers the type parameter from the left hand side.
 		Deque<Bounds> stack = new ArrayDeque<>();
 		
-		Bounds bounds = new Bounds();
+		Bounds current = new Bounds();
 		
-		bounds.node = node;
-		bounds.max_bound = Integer.MAX_VALUE;
-		bounds.min_bound = Integer.MIN_VALUE;
+		current.node = node;
+		current.upper_bound = Integer.MAX_VALUE;
+		current.lower_bound = Integer.MIN_VALUE;
 		
-		stack.push(bounds);
+		stack.push(current);
 		
 		while (!stack.isEmpty()) {
 			
-			bounds = stack.pop();
+			current = stack.pop();
 			
-			Node curr_node = bounds.node;
-			int upper_bound = bounds.max_bound;
-			int lower_bound = bounds.min_bound;
+			Node curr_node = current.node;
 			
-			if (curr_node.val < lower_bound || curr_node.val > upper_bound) return false;
+			if (curr_node.val < current.lower_bound || curr_node.val > current.upper_bound) return false;
 			
 			if (curr_node.left != null) {
 				
-				bounds.node = curr_node.left;
-				bounds.max_bound = curr_node.val;
-				bounds.min_bound = lower_bound;
+				Bounds left = new Bounds();
 				
-				stack.push(bounds);
+				left.node = curr_node.left;
+				left.upper_bound = curr_node.val;
+				left.lower_bound = current.lower_bound;
+				
+				stack.push(left);
 				
 			}
 			
 			if (curr_node.right != null) {
 				
-				bounds.node = curr_node.right;
-				bounds.min_bound = curr_node.val;
-				bounds.max_bound = upper_bound;
+				Bounds right = new Bounds();
 				
-				stack.push(bounds);
+				right.node = curr_node.right;
+				right.lower_bound = curr_node.val;
+				right.upper_bound = current.upper_bound;
+				
+				stack.push(right);
 				
 			}
 			
 			
 		}
 		
-		
 		return true;
-		
 	}
 	
 	// Find the kth smallest node in a Binary Search Tree (BST). The 0th node is defined to be the smallest.

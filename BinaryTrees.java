@@ -88,6 +88,14 @@ public class BinaryTrees {
 		int lower_bound;
 		int upper_bound;
 		
+		Bounds(Node node, int lower_bound, int upper_bound) {
+			
+			this.node = node;
+			this.lower_bound = lower_bound;
+			this.upper_bound = upper_bound;
+			
+		}
+		
 	}
 	
 	
@@ -101,41 +109,27 @@ public class BinaryTrees {
 		
 		Bounds current = new Bounds();
 		
-		current.node = node;
-		current.upper_bound = Integer.MAX_VALUE;
-		current.lower_bound = Integer.MIN_VALUE;
-		
-		stack.push(current);
+		stack.push(new Bounds(node, Integer.MIN_VALUE, Integer.MAX_VALUE));
 		
 		while (!stack.isEmpty()) {
 			
 			current = stack.pop();
 			
 			Node curr_node = current.node;
+			int lower_bound = current.lower_bound;
+			int upper_bound = current.upper_bound;
 			
-			if (curr_node.val < current.lower_bound || curr_node.val > current.upper_bound) return false;
+			if (curr_node.val < lower_bound || curr_node.val > upper_bound) return false;
 			
 			if (curr_node.left != null) {
-				
-				Bounds left = new Bounds();
-				
-				left.node = curr_node.left;
-				left.upper_bound = curr_node.val;
-				left.lower_bound = current.lower_bound;
-				
-				stack.push(left);
+			
+				stack.push(new Bounds(curr_node.left, lower_bound, curr_node.val));
 				
 			}
 			
 			if (curr_node.right != null) {
 				
-				Bounds right = new Bounds();
-				
-				right.node = curr_node.right;
-				right.lower_bound = curr_node.val;
-				right.upper_bound = current.upper_bound;
-				
-				stack.push(right);
+				stack.push(new Bounds(curr_node.right, curr_node.val, upper_bound));
 				
 			}
 			
@@ -151,7 +145,7 @@ public class BinaryTrees {
 		
 		if (root == null || k < 0) return null;
 		
-		Deque<Node> stack = new ArrayDeque<Node>();
+		Deque<Node> stack = new ArrayDeque<>();
 		stack.push(root);
 		
 		while (!stack.isEmpty()) {

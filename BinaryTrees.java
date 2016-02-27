@@ -99,6 +99,12 @@ public class BinaryTrees {
 	
 	
 	// Method to check if a binary tree is also a valid binary search tree (BST).
+	
+	// Description of solution: Do a depth-first traversal of the tree and test if each node satisfies the binary search
+	// tree property. The binary search tree property states that a node is valid if its key is greater than every 
+	// ancestral node in whose right-subtree it resides and less than every ancestral node in whose left-subtree it 
+	// resides. Instead of checking the node against all of its ancestors, simply check the largest number it should 
+	// be greater than (its lower bound) and the smallest number it should be less than (its upper bound).
 	public boolean check_if_valid_binary_search_tree(Node node) {
 		
 		if (node == null) return true;

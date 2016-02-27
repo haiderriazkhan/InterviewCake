@@ -5,7 +5,7 @@ public class MergeMeetings {
 		
 		// We will use a TreeMap to sort the meeeting times by their start time. 			
 		
-		SortedMap<Integer, Integer> Sorted_Meetings = new TreeMap<Integer,Integer>();
+		NavigableMap<Integer, Integer> Sorted_Meetings = new TreeMap<Integer,Integer>();
 		
 		for (Map.Entry<Integer, Integer> x : calendar) {
 			
@@ -15,7 +15,7 @@ public class MergeMeetings {
 		
 		// Iterate through the TreeMap and merge meetings that overlap and put them in the output List. 
 		
-		List<Map.Entry<Integer, Integer>> Merged_Meetings = ArrayList<AbstractMap.SimpleEntry<Integer,Integer>>();
+		List<Map.Entry<Integer, Integer>> Merged_Meetings = new ArrayList<Map.Entry<Integer,Integer>>();
 		
 		Merged_Meetings.add(Sorted_Meetings.pollFirstEntry());
 		

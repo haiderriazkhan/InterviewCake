@@ -6,7 +6,7 @@
 
 
 // Solution
-public class IsBalanced {
+public class BalancedBinaryTree {
 
 
 	class Node {

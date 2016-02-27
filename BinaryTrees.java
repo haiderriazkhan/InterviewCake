@@ -106,13 +106,11 @@ public class BinaryTrees {
 		// The diamond operator on the right hand side infers the type parameter from the left hand side.
 		Deque<Bounds> stack = new ArrayDeque<>();
 		
-		Bounds current = new Bounds();
-		
 		stack.push(new Bounds(node, Integer.MIN_VALUE, Integer.MAX_VALUE));
 		
 		while (!stack.isEmpty()) {
 			
-			current = stack.pop();
+			Bounds current = stack.pop();
 			
 			Node curr_node = current.node;
 			int lower_bound = current.lower_bound;

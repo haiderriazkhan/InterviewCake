@@ -1,4 +1,4 @@
-public class cashier {
+public class Cashier {
 	
 	
 	// Recursive solution. Exponential time complexity.

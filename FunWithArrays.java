@@ -1,4 +1,4 @@
-public class FunWithArrays{
+public class FunWithArrays {
 
 
 	// Maximum profit by buying and selling a stock 

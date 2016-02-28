@@ -11,8 +11,8 @@ public class BalancedBinaryTree {
 
 	class Node <T> {
 	
- 		Node left;
-  		Node right;
+ 		Node <T> left;
+  		Node <T> right;
   		T value;
 	}	
 	

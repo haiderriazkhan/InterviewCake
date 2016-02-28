@@ -1,3 +1,13 @@
+// Given a list of doubles (2-tuples) where the first value represents the start time of a meeting and the second value represents the 
+// end time of a meeting. Write a program that will traverse the list and merge overlapping meeting times until the remaining
+// time ranges do not overlap. Example :
+
+// Given :  [(1, 2), (3, 5), (4, 7), (10, 13), (9, 10)]
+// Return : [(1, 2), (3, 7), (9, 13)]
+
+
+// Note : The meetings in the provided list may be in any order.
+
 public class MergeMeetings {
 	
 	// Merge Meeting times that overlap. 

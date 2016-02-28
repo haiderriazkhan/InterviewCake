@@ -1,6 +1,23 @@
 import java.io.*;
 import java.util.*;
 
+
+// Sort the characters in the following string:
+
+// abcdefghijklmnopqrstuvwxyz_
+
+// by the number of times the character appears in the following text (descending):
+
+// epqiiqwdiwgyka_vsqtsujeqqicnhyivo_sigwasmkwgsih_akl_gtnkhgikgveidpmt
+// qybpxpnnpbxkwpisgjmdzgh_ojysbtsnsvxvuhguocp_qc_vouxqmg_cetlpmounxnvg
+// ...
+// ...
+// ...
+// mnshz_xz
+
+// Now take the sorted string, and drop all the characters after (and including) the _. The remaining word is the answer.
+
+
 public class FogCreek {
 	
 	public static String SortString(){

@@ -1,3 +1,20 @@
+// Given a desired amount (integer) and a list of non zero positive denominations (integer array of non zero positive numbers).
+// Determine the total number of ways to obtain the amount using only the integers in the array.  
+// For example:
+
+// amount = 4 and denominations = [1,2,3,4]
+
+// 1. 1 + 1 + 1 + 1 = 4
+// 2. 1 + 1 + 2 = 4
+// 3. 2 + 2 = 4
+// 4. 3 + 1 = 4
+// 5. 4 = 4
+
+
+// This should return 5
+
+
+
 public class Cashier {
 	
 	

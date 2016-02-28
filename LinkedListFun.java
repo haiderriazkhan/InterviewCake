@@ -1,11 +1,19 @@
 public class LinkedListFun {
 	
+	class Node <T> {
+        
+        	Node <T> next;
+        	T value;
+    	}
+		
+		
+		
 	// Cycle in a Linked List. We solve this using Floyd's cycle-finding algorithm.
-	public boolean Is_There_A_Cycle(Node head) {
+	public boolean Is_There_A_Cycle(Node<?> head) {
 		
 		if (head == null) return false;
 		
-		Node slow,fast;
+		Node<?> slow,fast;
 		
 		slow = head;
 		fast = head;
@@ -34,12 +42,12 @@ public class LinkedListFun {
 		
 	}
 	
-	public Node find_kth_to_last_node(Node head, int k) {
+	public Node<?> find_kth_to_last_node(Node<?> head, int k) {
 		
 		if (head == null || k < 0) return null;	
 		
-		Node first = head;
-		Node second = head;
+		Node<?> first = head;
+		Node<?> second = head;
 		
 		int counter = k;
 		

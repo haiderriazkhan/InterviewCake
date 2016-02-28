@@ -5,15 +5,15 @@
 // Write a method that determines whether a given binary tree is balanced as per the definition above.
 
 
-// Solution
+
 public class BalancedBinaryTree {
 
 
-	class Node {
+	class Node <T> {
 	
  		Node left;
   		Node right;
-  		Object value;
+  		T value;
 	}	
 	
 	

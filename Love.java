@@ -20,11 +20,11 @@ public class Love {
 		love_strength.x = -1;
 		love_strength.y = -1;
 		
-		Map.Entry<Integer, Integer> x_axis_intersection  = 	find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.x, lover_one.width)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.x, lover_two.width));
+		Map.Entry<Integer, Integer> x_axis_intersection  = find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.x, lover_one.width)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.x, lover_two.width));
 		
 		if (x_axis_intersection.getValue() == 0) return love_strength;
 		
-		Map.Entry<Integer, Integer> y_axis_intersection  = 	find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.y, lover_one.height)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.y, lover_two.height));
+		Map.Entry<Integer, Integer> y_axis_intersection  = find_overlap_this_dim(new AbstractMap.SimpleEntry<Integer , Integer>(lover_one.y, lover_one.height)  , new AbstractMap.SimpleEntry<Integer , Integer>(lover_two.y, lover_two.height));
 		
 		if (y_axis_intersection.getValue() == 0) return love_strength;
 		

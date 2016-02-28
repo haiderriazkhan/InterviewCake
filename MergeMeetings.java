@@ -6,7 +6,7 @@
 // Return : [(1, 2), (3, 7), (9, 13)]
 
 
-// Note : The meetings in the provided list may be in any order.
+// Note : The meetings in the given list may be in any order.
 
 public class MergeMeetings {
 	

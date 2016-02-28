@@ -18,29 +18,29 @@ public class BalancedBinaryTree {
 	
 	
 	// Depth-First Search : Since it reaches leaves fatser, use DFS for most cases.
-	public boolean IsBalanced_DFS(Node root) {
+	public boolean IsBalanced_DFS(Node<?> root) {
     	
   		if (root == null) return true;
         
   		Integer first_leaf_depth = null;
   		Integer second_leaf_depth = null;
     	
-		Deque<Map.Entry<Node,Integer>> stack = new ArrayDeque<Map.Entry<Node,Integer>>();
+		Deque<Map.Entry<Node<?>,Integer>> stack = new ArrayDeque<Map.Entry<Node<?>,Integer>>();
         
-  		stack.push(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
+  		stack.push(new AbstractMap.SimpleEntry<Node<?>,Integer>(root, 0));
         
   		while (!stack.isEmpty()) {
         	
-    			Map.Entry<Node,Integer> tuple = stack.pop();
+    			Map.Entry<Node<?>,Integer> tuple = stack.pop();
         	
-    			Node head = tuple.getKey();
+    			Node<?> head = tuple.getKey();
     			Integer depth = tuple.getValue();
             
     			if (head.left != null) {
-      			stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));
+      			stack.push(new AbstractMap.SimpleEntry<Node<?>,Integer>(head.left, depth + 1));
     			} 
     			if (head.right != null) {
-      			stack.push(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
+      			stack.push(new AbstractMap.SimpleEntry<Node<?>,Integer>(head.right, depth + 1));
     			} 
             
     			if (head.left == null && head.right == null) {
@@ -65,7 +65,7 @@ public class BalancedBinaryTree {
 
 
 	// Breadth-First Search 
-	public boolean IsBalanced_BFS(Node root) {
+	public boolean IsBalanced_BFS(Node<?> root) {
 	
 		if (root == null) return true;
 	
@@ -73,22 +73,22 @@ public class BalancedBinaryTree {
 		Integer second_min_leaf_depth = null;
 		
 	
-		Queue<Map.Entry<Node,Integer>> q = new ArrayDeque<Map.Entry<Node,Integer>>();
+		Queue<Map.Entry<Node<?>,Integer>> q = new ArrayDeque<Map.Entry<Node<?>,Integer>>();
 	
-		q.add(new AbstractMap.SimpleEntry<Node,Integer>(root, 0));
+		q.add(new AbstractMap.SimpleEntry<Node<?>,Integer>(root, 0));
 	
 		while (!q.isEmpty()) {
 		
-			Map.Entry<Node,Integer> tuple = q.remove();
+			Map.Entry<Node<?>,Integer> tuple = q.remove();
 		
-			Node head = tuple.getKey();
+			Node<?> head = tuple.getKey();
 			Integer depth = tuple.getValue();
 		
 			if (head.left != null) {
-				q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.left, depth + 1));	
+				q.add(new AbstractMap.SimpleEntry<Node<?>,Integer>(head.left, depth + 1));	
 			}
 			if (head.right != null) {
-				q.add(new AbstractMap.SimpleEntry<Node,Integer>(head.right, depth + 1));
+				q.add(new AbstractMap.SimpleEntry<Node<?>,Integer>(head.right, depth + 1));
 			}
 		
 			if (head.left == null && head.right == null) {

@@ -1,4 +1,4 @@
-// Rectangles on a 2-D grid represents the personalities of people looking for love. The more a person's rectangle overlaps with another
+// Rectangles on a 2-D grid represent the personalities of people looking for love. The more a person's rectangle overlaps with another
 // person's rectangle, the greater the probability that they will fall in love with one another. The sides of the rectangles will either
 // be parallel with the x-axis or the y-axis. Write a function that returns the rectangular intersection (love rectangle) of any 
 // two rectangles belonging to lonely romantics.

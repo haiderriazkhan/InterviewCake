@@ -1,7 +1,10 @@
 public class FunWithArrays {
 
-
-	// Maximum profit by buying and selling a stock 
+	// Suppose we are given an array of n integers where the value at the ith index represents the price of a certain 
+	// stock on the ith day. 
+	
+	// Write an efficient algorithm to determine the maximum profit a person could make with one purchase and one sale.
+	// Note : You can not sell before you buy (we don't have a time machine). 
 	public Double MaxProfit(double[] A){
 
 		if (A == null || A.length < 2) return null;

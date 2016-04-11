@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 
 /**
@@ -65,7 +65,8 @@ public class FogCreek {
 		}
 		catch (IOException e) {
 
-			log.info("Could not load text file.");
+			log.log( Level.FINE, "Could not load text file", e );
+			return "";
 		}
 
 		// String that needs to be sorted.
@@ -99,7 +100,7 @@ public class FogCreek {
 
 	public static void main(String[] args) {
 
-		System.out.println(sortString());
+		log.info(sortString());
 
 	}
 

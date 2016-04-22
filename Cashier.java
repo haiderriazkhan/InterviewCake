@@ -1,5 +1,5 @@
 // Given a desired amount (integer) and a list of non zero positive denominations (integer array of non zero positive numbers).
-// Determine the total number of ways to obtain the amount using only the integers in the array.  
+// Determine the total number of ways to obtain the amount using only the integers in the array.
 // For example:
 
 // amount = 4 and denominations = [1,2,3,4]
@@ -16,61 +16,86 @@
 
 
 public class Cashier {
-	
-	
-	// Recursive solution. Exponential time complexity.
-	public int count_number_of_ways(int amount, int acc, int index,  int[] denominations) {
-		
-		if (acc > amount) return 0;
-		
-		if (amount == acc) return 1;
-		
-		
-		int len = denominations.length;
-		int count = 0;
-		
-		while (acc < amount) {
-			
-		
-			for (int i = index + 1; i < len; i++) {
-			
-				
-				count += count_number_of_ways(amount, acc + denominations[i], i, denominations);
-				
-			
-			}
-			
-			acc += denominations[index];
-			
-			if (acc > amount) return count + 0;
-			
-			if (acc == amount) return count + 1;
-				
-		}
-		
-		return count + 0;
-		
-		
+
+
+	// Optimal Recursive Solution. O(n*m) time and O(n*m) space
+	public int countNumberOfWaysRecursively (int amount, List<Integer> denominations) {
+
+		// This variable stores the solution to subproblems of the recursive call
+		Map<Map.Entry<Integer,Integer>, Integer> memory = new HashMap<>();
+
+		// The recursive helper method returns the final solution
+		return countNumberOfWaysRecursivelyHelper(amount, 0, denominations, memory);
+
 	}
-	
-	
-	// Dynamic programming solution. O(m*n)
-	public int count_number_of_ways_dp(int amount, int[] denominations) {
-		
-		int[] number_of_ways = new int[amount+1];
-		number_of_ways[0] = 1;
-		
+
+	// Private recursive helper method
+	private int countNumberOfWaysRecursivelyHelper(int amountLeft, int index, List<Integer> denominations, Map<Map.Entry<Integer,Integer>, Integer> memory) {
+
+		if (amountLeft < 0) {
+			return 0;
+		}
+
+		if (amountLeft == 0) {
+			return 1;
+		}
+
+		if (denominations.size() == index) {
+			return 0;
+		}
+
+		Map.Entry<Integer,Integer> subProblem = new AbstractMap.SimpleEntry<Integer,Integer>(amountLeft, index);
+
+		if (memory.containsKey(subProblem)) {
+
+			return memory.get(subProblem);
+		}
+
+
+		int currentCoin = denominations.get(index);
+
+
+		if (currentCoin <= 0) {
+			throw new IllegalArgumentException("Coin value should be positive");
+		}
+
+		int numberOfWays = 0;
+
+		while (amountLeft >= 0) {
+
+			numberOfWays += countNumberOfWaysRecursivelyHelper(amountLeft, index + 1, denominations, memory);
+
+			amountLeft -= currentCoin;
+
+		}
+
+		memory.put(subProblem , numberOfWays);
+		return numberOfWays;
+
+	}
+
+
+	// Dynamic programming solution. O(m*n) time and O(n) space
+	public int countNumberOfWaysDp(int amount, int[] denominations) {
+
+		int[] numberOfWays = new int[amount+1];
+		numberOfWays[0] = 1;
+
 		for (int x : denominations) {
-			
+
+			if (x <= 0) {
+				throw new IllegalArgumentException("Coin value should be positive");
+			}
+
 			for (int i = x; i <= amount;  i++ ) {
-				int prev_amount = i - x;
-				number_of_ways[i] += number_of_ways[prev_amount];
-			}	
-			
+				int prevAmount = i - x;
+				numberOfWays[i] += numberOfWays[prevAmount];
+			}
+
 		}
-		
-		return number_of_ways[amount];
+
+		return numberOfWays[amount];
 	}
-	
-	
+
+
 }

@@ -17,15 +17,16 @@ public class BalancedBinaryTree {
 	}
 
 
+
 	// Depth-First Search : Since it reaches leaves fatser, use DFS for most cases.
-	public boolean IsBalancedDFS(Node<?> root) {
+	public boolean isBalancedDFS(Node<?> root) {
 
 		if (root == null) {
 			return true;
 		}
 
-		Integer first_leaf_depth = null;
-		Integer second_leaf_depth = null;
+		Integer firstLeafDepth = null;
+		Integer secondLeafDepth = null;
 
 		Deque<Map.Entry<Node<?>,Integer>> stack = new ArrayDeque<>();
 
@@ -47,19 +48,18 @@ public class BalancedBinaryTree {
 
 			if (head.left == null && head.right == null) {
 
-				if (first_leaf_depth == null){
+				if (firstLeafDepth == null) {
+					firstLeafDepth = depth;
+				} else if (secondLeafDepth == null && Math.abs(depth - firstLeafDepth) > 1) {
+					return false;
+				} else if (secondLeafDepth == null && depth != firstLeafDepth) {
+					secondLeafDepth = depth;
+				} else if (depth != firstLeafDepth && depth != secondLeafDepth) {
+					return false;
+				}
 
-					first_leaf_depth = depth;
-				}
-				else if (second_leaf_depth == null) {
-
-					if (Math.abs(depth - first_leaf_depth) > 1) return false;
-					if (depth != first_leaf_depth) second_leaf_depth = depth;
-				}
-				else {
-					if (depth != first_leaf_depth && depth != second_leaf_depth ) return false;
-				}
 			}
+
 		}
 
 		return true;
@@ -67,14 +67,14 @@ public class BalancedBinaryTree {
 
 
 	// Breadth-First Search
-	public boolean IsBalancedBFS(Node<?> root) {
+	public boolean isBalancedBFS(Node<?> root) {
 
 		if (root == null) {
 			return true;
 		}
 
-		Integer min_leaf_depth = null;
-		Integer second_min_leaf_depth = null;
+		Integer minLeafDepth = null;
+		Integer secondMinLeafDepth = null;
 
 
 		Queue<Map.Entry<Node<?>,Integer>> q = new ArrayDeque<>();
@@ -97,17 +97,14 @@ public class BalancedBinaryTree {
 
 			if (head.left == null && head.right == null) {
 
-				if (min_leaf_depth == null){
-
-					min_leaf_depth = depth;
-				}
-				else if (second_min_leaf_depth == null) {
-
-					if (Math.abs(depth - min_leaf_depth) > 1) return false;
-					if (depth != min_leaf_depth) second_min_leaf_depth = depth;
-				}
-				else {
-					if (depth != min_leaf_depth && depth != second_min_leaf_depth ) return false;
+				if (minLeafDepth == null) {
+					minLeafDepth = depth;
+				} else if (secondMinLeafDepth == null && Math.abs(depth - minLeafDepth) > 1) {
+					return false;
+				} else if (secondMinLeafDepth == null && depth != minLeafDepth) {
+					secondMinLeafDepth = depth;
+				} else if (depth != minLeafDepth && depth != secondMinLeafDepth) {
+					return false;
 				}
 
 			}

@@ -1,78 +1,83 @@
 public class FunWithArrays {
 
-	// Suppose we are given an array of n integers where the value at the ith index represents the price of a certain 
-	// stock on the ith day. 
-	
+	private static final int[] EMPTY_INTEGER_ARRAY = new int[0];
+
+	// Suppose we are given an array of n integers where the value at the ith index represents the price of a certain
+	// stock on the ith day.
+
 	// Write an efficient algorithm to determine the maximum profit a person could make with one purchase and one sale.
-	// Note : You can not sell before you buy (we don't have a time machine). 
-	public Double MaxProfit(double[] A){
+	// Note : You can not sell before you buy (we don't have a time machine).
+	public Double maxProfit(double[] A){
 
-		if (A == null || A.length < 2) return null;
-
+		if (A == null || A.length < 2) {
+			return 0;
+		}
 		int len = A.length;
 
 		double min = A[0];
-		double max_profit = A[1] - min;
+		double maxProfit = A[1] - min;
 
-		if (len == 2) return max_profit;
-
-		double potential_max_profit = 0;
+		if (len == 2) return maxProfit;
 
 		for (int i=2; i < len ; i++) {
 
 			if (A[i-1] < min) min = A[i-1];
 
-			potential_max_profit = A[i] - min ;
+			double potential_max_profit = A[i] - min ;
 
-			if (potential_max_profit > max_profit) max_profit = potential_max_profit ;
+			if (potential_max_profit > maxProfit) maxProfit = potential_max_profit ;
 
 		}
 
-		return max_profit;
+		return maxProfit;
 
 	}
 
-	// Product of every integer except the integer at that index. Using division is not permitted. 
-	public int[] prod_of_all_ints_except_at_index(int[] A){
+	// Product of every integer except the integer at that index. Using division is not permitted.
+	public int[] prodOfAllIntsExceptAtIndex(int[] A){
 
-		if (A == null || A.length == 0) return null;
+		if (A == null || A.length == 0) {
+			return EMPTY_INTEGER_ARRAY;
+		}
 
 		int len = A.length;
 
+		// An empty product is by convention equal to the multiplicative identity 1
 		if (len == 1) return  new int[]{1};
 
 
-		int[] right_cum_prod = new int[len-1];
+		int[] rightCumProdArr = new int[len-1];
 
 		int prev = 1;
 
 		for (int i = len-2; i >= 0; i--) {
 
-			right_cum_prod[i] = A[i+1]*prev;
-			prev = right_cum_prod[i];
+			rightCumProdArr[i] = A[i+1]*prev;
+			prev = rightCumProdArr[i];
 
 		}
 
-		int left_cum_prod = 1;
-		Integer curr_int = null; 
+		int leftCumProd = 1;
 
 		for(int j=0; j < len -1; j++ ) {
 
-			curr_int = A[j];
-			A[j] = left_cum_prod * right_cum_prod[j];
-			left_cum_prod = curr_int * left_cum_prod;
+			int currInt = A[j];
+			A[j] = leftCumProd * rightCumProdArr[j];
+			leftCumProd = currInt * leftCumProd;
 
 		}
 
-		A[len-1] = left_cum_prod;
+		A[len-1] = leftCumProd;
 
 		return A;
 	}
 
 	// Product of every integer except the integer at that index. Use Division
-	public int[] prod_of_all_ints_except_at_index_div(int[] A){
+	public int[] prodOfAllIntsExceptAtIndexDiv(int[] A){
 
-		if (A == null || A.length == 0) return null;
+		if (A == null || A.length == 0) {
+			return EMPTY_INTEGER_ARRAY;
+		}
 
 		int len = A.length;
 		if (len == 1) return  new int[]{1};
@@ -90,11 +95,12 @@ public class FunWithArrays {
 			tot_prod *= x;
 		}
 
+		// For an array of type int, the default value is zero.
 		if (num_zeros > 1) return new int[len];
 
 		for (int i = 0; i < len; i++) {
 
-			if (num_zeros == 1){
+			if (num_zeros == 1) {
 
 				A[i] = (A[i] == 0) ? tot_prod : 0;
 				continue;
@@ -112,11 +118,14 @@ public class FunWithArrays {
 
 	// Equilibrium index of an array
 	// Equilibrium index of an array is an index such that the sum of elements at lower indices is equal to the sum of elements at higher indices.
-	public List<Integer> find_equilibrium(int[] A){
+	public List<Integer> findEquilibrium(int[] A){
 
-		if (A == null || A.length == 0) return null;
+		if (A == null || A.length == 0) {
+			 return Collections.<Integer>emptyList();
+		}
 
 		int len = A.length;
+		// Returns a fixed-size list containing only one element : 0
 		if (len == 1) return  Arrays.asList(0);
 
 		int right_sum = 0;
@@ -125,7 +134,7 @@ public class FunWithArrays {
 
 		int left_sum = 0;
 
-		List<Integer> equil_indices = new ArrayList<Integer>();
+		List<Integer> equil_indices = new ArrayList<>();
 
 		for (int i = 0; i < len; i++) {
 
@@ -133,7 +142,7 @@ public class FunWithArrays {
 
 			if (left_sum == right_sum) equil_indices.add(i) ;
 
-			left_sum += A[i]; 
+			left_sum += A[i];
 
 		}
 
@@ -143,16 +152,16 @@ public class FunWithArrays {
 
 
 	// Search text for a pattern. Rabin–Karp algorithm.
-	public Integer StringMatch(String text , String pattern){
+	public Integer stringMatch(String text , String pattern){
 
 		// Base case 1
-		if (text == null || pattern == null ) return null;
+		if (text == null || pattern == null ) return -1;
 
 		int len = text.length();
 		int sublen = pattern.length();
 
 		// Base case 2
-		if (sublen > len) return null;
+		if (sublen > len) return -1;
 
 		double subhash = 0 , hash = 0;
 		//pre-processing
@@ -172,7 +181,8 @@ public class FunWithArrays {
 
 		}
 
-		return null;
+		// Pattern not found
+		return -1;
 
 	}
 
@@ -187,33 +197,33 @@ public class FunWithArrays {
 
 
 	// Given an array of ints A, and an int k, return two indices i and j such that A[i] + A[j] = k.
-	public int[] sum_indices(int[] A, int k){
+	public int[] sumIndices(int[] A, int k){
 
 		if (A == null || A.length == 0) return new int[0];
 
 		int len = A.length , j;
 
-		HashMap<Integer, Integer> comp_val = new HashMap<Integer, Integer>(len);
+		HashMap<Integer, Integer> corrVal = new HashMap<>(len);
 
-		for (int i = 0; i < len; i++){
+		for (int i = 0; i < len; i++) {
 
 			if (A[i] > k) continue;
 
-			if (comp_val.get(A[i]) != null) return new int[]{i , comp_val.get(A[i])};
+			if (corrVal.containsKey(A[i])) return new int[]{i , corrVal.get(A[i])};
 
 			j = k - A[i];
 
-			comp_val.put(j, i);
+			corrVal.put(j, i);
 
 		}
 
-		return new int[0];	
+		return new int[0];
 
 	}
 
 	// Given an array of integers, find the highest product you can get from three of the integers.
 	// Input array will be at least of length 3.
-	public int max_prod_three(int[] A){
+	public int maxProdThree(int[] A){
 
 		int len = A.length;
 

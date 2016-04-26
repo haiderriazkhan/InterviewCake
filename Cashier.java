@@ -44,7 +44,7 @@ public class Cashier {
 			return 0;
 		}
 
-		Map.Entry<Integer,Integer> subProblem = new AbstractMap.SimpleEntry<Integer,Integer>(amountLeft, index);
+		Map.Entry<Integer,Integer> subProblem = new AbstractMap.SimpleEntry<>(amountLeft, index);
 
 		if (memory.containsKey(subProblem)) {
 			return memory.get(subProblem);

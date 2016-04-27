@@ -25,33 +25,31 @@ public class Cashier {
 		Map<Map.Entry<Integer,Integer>, Integer> memory = new HashMap<>();
 
 		// The recursive helper method returns the final solution
-		return countNumberOfWaysRecursivelyHelper(amount, 0, denominations, memory);
+		return countNumberOfWaysRecursivelyHelper(new AbstractMap.SimpleEntry<>(amount, 0), denominations, memory);
 
 	}
 
 	// Private recursive helper method
-	private int countNumberOfWaysRecursivelyHelper(int amountLeft, int index, List<Integer> denominations, Map<Map.Entry<Integer,Integer>, Integer> memory) {
+	private int countNumberOfWaysRecursivelyHelper(Map.Entry<Integer,Integer> subProblem, List<Integer> denominations, Map<Map.Entry<Integer,Integer>, Integer> memory) {
 
-		if (amountLeft < 0) {
+		if (subProblem.getKey() < 0) {
 			return 0;
 		}
 
-		if (amountLeft == 0) {
+		if (subProblem.getKey() == 0) {
 			return 1;
 		}
 
-		if (denominations.size() == index) {
+		if (denominations.size() == subProblem.getValue()) {
 			return 0;
 		}
-
-		Map.Entry<Integer,Integer> subProblem = new AbstractMap.SimpleEntry<>(amountLeft, index);
 
 		if (memory.containsKey(subProblem)) {
 			return memory.get(subProblem);
 		}
 
 
-		int currentCoin = denominations.get(index);
+		int currentCoin = denominations.get(subProblem.getValue());
 
 
 		if (currentCoin <= 0) {
@@ -59,10 +57,11 @@ public class Cashier {
 		}
 
 		int numberOfWays = 0;
+		int amountLeft = subProblem.getKey();
 
 		while (amountLeft >= 0) {
 
-			numberOfWays += countNumberOfWaysRecursivelyHelper(amountLeft, index + 1, denominations, memory);
+			numberOfWays += countNumberOfWaysRecursivelyHelper(new AbstractMap.SimpleEntry<>(amountLeft, subProblem.getValue() + 1), denominations, memory);
 
 			amountLeft -= currentCoin;
 

@@ -36,8 +36,8 @@ public class Palindrome {
   // Store solutions to subproblems
   public String longestPalindromeInString(String s) {
 
-    Boolean [][] isPalindromTable = new Boolean [][];
     int len = s.length();
+    Boolean[][] isPalindromTable = new Boolean[len][len];
 
     // A single character is a palindrome of length one
     for (int i = 0; i < len; i++) {
@@ -57,8 +57,10 @@ public class Palindrome {
 
     }
 
-    for (int subLen = 3; subLen < len; subLen++) {
+    // Searching for palindromes of length 3 and greater (up until the length of the input string)
+    for (int subLen = 3; subLen <= len; subLen++) {
 
+      // The starting index of the substring in question
       for (int s=0; s < len - subLen; s++) {
 
           int e = s + subLen - 1;
@@ -72,7 +74,7 @@ public class Palindrome {
 
     }
 
-    return s.substring(s , s + maxLength);
+    return s.substring(startingIndex , startingIndex + maxLength);
 
   }
 

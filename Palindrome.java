@@ -61,7 +61,7 @@ public class Palindrome {
     for (int subLen = 3; subLen <= len; subLen++) {
 
       // The starting index of the substring in question
-      for (int s=0; s < len - subLen; s++) {
+      for (int s=0; s <= len - subLen; s++) {
 
           int e = s + subLen - 1;
           if  (isPalindromTable[s+1][e-1] && s.charAt(s) == s.charAt(e) ) {

@@ -32,9 +32,48 @@ public class Palindrome {
 
   }
 
-
+  // Dynamic Programming
+  // Store solutions to subproblems
   public String longestPalindromeInString(String s) {
-    
+
+    Boolean [][] isPalindromTable = new Boolean [][];
+    int len = s.length();
+
+    // A single character is a palindrome of length one
+    for (int i = 0; i < len; i++) {
+        isPalindromTable[i][i] = true;
+    }
+    int maxLength = 1;
+    int startingIndex = 0;
+
+    // Check two character plaindromes
+    for (int i = 0; i < len-1; i++) {
+
+      if (s.charAt(i) == s.charAt(i+1)) {
+        isPalindromTable[i][i+1] = true;
+        maxLength = 2;
+        startingIndex = i;
+      }
+
+    }
+
+    for (int subLen = 3; subLen < len; subLen++) {
+
+      for (int s=0; s < len - subLen; s++) {
+
+          int e = s + subLen - 1;
+          if  (isPalindromTable[s+1][e-1] && s.charAt(s) == s.charAt(e) ) {
+              isPalindromTable[s][e] = true;
+              startingIndex = s;
+              maxLength = subLen;
+          }
+
+      }
+
+    }
+
+    return s.substring(s , s + maxLength);
+
   }
 
 

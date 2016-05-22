@@ -79,5 +79,41 @@ public class Palindrome {
   }
 
 
+  public int longestPalindromicSubsequence(String s) {
+
+    int len = s.length();
+    int[][] subproblems = new int [len][len];
+
+    for (int i = 0; i < len; i++) {
+      subproblems[i][i] = 1;
+    }
+
+    for (int i = 0; i < len - 1; i++) {
+
+      if (s.charAt(i) == s.charAt(i+1)) {
+        subproblems[i][i+1] = 2;
+      } else {
+        subproblems[i][i+1] = 1;
+      }
+
+    }
+
+    for (int k = 3; k <= len; k++) {
+      for (int i = 0; i <= len - k; i++) {
+        int j = i + k - 1;
+        if (s.charAt(i) == s.charAt(j)) {
+          subproblems[i][j] = subproblems[i+1][j-1] + 2;
+        } else {
+          subproblems[i][j] = Math.max(subproblems[i+1][j] , subproblems[i][j-1]);
+        }
+      }
+
+    }
+
+    return subproblems[0][len-1];
+
+  }
+
+
 
 }

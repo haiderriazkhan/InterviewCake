@@ -17,8 +17,11 @@ public final class WebRequests implements Counter {
   private final Integer minutePointer;
   private final Integer secondPointer;
 
-  // Constant
+  // Constants
   private static final Integer millisecInHour = 3600000;
+  private static final Integer millisecInMinute = 6000;
+  private static final Integer millisecInSecond = 1000;
+
 
   // Linked List containing requests in the last hour
   private final LinkedList<Long> requestsReceived;
@@ -26,40 +29,68 @@ public final class WebRequests implements Counter {
   // Constructor
   public WebRequests() {
     requestsReceived = new LinkedList<>();
-    minutePointer = 0;
-    secondPointer = 0;
+    minutePointer = -1;
+    secondPointer = -1;
   }
 
   public void inc() {
 
     // Add the time stamp of latest request to the linked list
     requestsReceived.add(System.currentTimeMillis());
+    minutePointer++;
+    secondPointer++;
     updateList();
 
   }
 
-  // Remove requests from more than an hour ago
-  // Adjusts pointers
+
+  // Updates the Linked List and updates the pointers
   private void updateList() {
 
     if (requestsReceived.size() == 0) {
       return;
     }
 
+    // Remove requests from more than an hour ago
     while (System.currentTimeMillis() - requestsReceived.peek() > millisecInHour) {
       requestsReceived.remove();
 
       if (requestsReceived.size() == 0) {
-        minutePointer = 0;
-        secondPointer = 0;
-        break;
+        minutePointer = -1;
+        secondPointer = -1;
+        return;
       }
-      minutePointer--;
-      secondPointer--;
+      if (minutePointer > -1) minutePointer--;
+      if (secondPointer > -1) secondPointer--;
+
+    }
+
+    // Updates the minute pointer
+    if (minutePointer > -1) {
+
+      while (System.currentTimeMillis() - requestsReceived.peek(minutePointer) > millisecInMinute) {
+        minutePointer--;
+        if (minutePointer == -1) {
+          secondPointer = -1;
+          return;
+        }
+      }
+
+    }
+    // Updates the second pointer
+    if (secondPointer > -1) {
+
+      while (System.currentTimeMillis() - requestsReceived.peek(secondPointer) > millisecInSecond) {
+        secondPointer--;
+        if (secondPointer == -1) {
+          return;
+        }
+      }
 
     }
 
   }
+
 
 
   public int getLastHourCount() {
@@ -68,31 +99,13 @@ public final class WebRequests implements Counter {
   }
 
   public int getLastMinuteCount() {
-
-    if (requestsReceived.size() == 0) {
-      return 0;
-    } else if (requestsReceived.size() == minutePointer) {
-      return minutePointer;
-    }
-
-    while (System.currentTimeMillis() - requestsReceived.get(minutePointer) < millisecInMinute) {
-      minutePointer++;
-    }
-    return minutePointer;
+    updateList();
+    return minutePointer + 1;
   }
 
   public int getLastSecondCount() {
-
-    if (requestsReceived.size() == 0) {
-      return 0;
-    } else if (requestsReceived.size() == secondPointer) {
-      return secondPointer;
-    }
-
-    while (System.currentTimeMillis() - requestsReceived.get(secondPointer) < millisecInSecond) {
-      secondPointer++;
-    }
-    return secondPointer;
+    updateList();
+    return secondPointer + 1;
   }
 
 

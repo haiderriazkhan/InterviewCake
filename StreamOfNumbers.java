@@ -20,7 +20,7 @@ public class StreamOfNumbers {
 
     // Initialize the heaps
     Queue<Integer> minHeap = new PriorityQueue<>(streamLength/2 +1);
-    Queue<Integer> maxHeap = new PriorityQueue<>(streamLength/2 +1, Collections.reverseOrder);
+    Queue<Integer> maxHeap = new PriorityQueue<>(streamLength/2 +1, Collections.reverseOrder());
 
 
 

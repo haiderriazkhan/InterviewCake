@@ -3,6 +3,7 @@
 
 // Hint: To solve this problem, it might be useful to first write a method to determine the height of a binary tree.
 // The height of a binary tree is defined to be the length of the longest path to a leaf node from the root node.
+
 public class BinaryTrees {
 
 	public class Node {
@@ -47,7 +48,7 @@ public class BinaryTrees {
 	public Integer mostFreq(Node root) {
 
 		Map<Integer , Integer> tracker = new HashMap<>();
-		InOrderTraversal(root, tracker);
+		inOrderTraversal(root, tracker);
 
 		Integer max = 0;
 		Integer elem = null;
@@ -69,7 +70,7 @@ public class BinaryTrees {
 			return;
 		}
 
-		InOrderTraversal(node.left , HM);
+		inOrderTraversal(node.left , HM);
 
 
 		if (HM.get(node.val) == null ) {
@@ -83,7 +84,7 @@ public class BinaryTrees {
 		}
 
 
-		InOrderTraversal(node.right , HM);
+		inOrderTraversal(node.right , HM);
 
 	}
 

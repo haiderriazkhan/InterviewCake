@@ -5,7 +5,6 @@
 
 
 
-
 public class Love {
 
 	// This is how we will describe a rectangle on the 2-D grid.

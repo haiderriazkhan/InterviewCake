@@ -14,8 +14,8 @@ Interface Counter {
 public final class WebRequests implements Counter {
 
   // Pointers
-  private final Integer minutePointer;
-  private final Integer secondPointer;
+  private Integer minutePointer;
+  private Integer secondPointer;
 
   // Constants
   private static final Integer millisecInHour = 3600000;
@@ -68,7 +68,7 @@ public final class WebRequests implements Counter {
     // Updates the minute pointer
     if (minutePointer > -1) {
 
-      while (System.currentTimeMillis() - requestsReceived.peek(minutePointer) > millisecInMinute) {
+      while (System.currentTimeMillis() - requestsReceived.get(minutePointer) > millisecInMinute) {
         minutePointer--;
         if (minutePointer == -1) {
           secondPointer = -1;
@@ -80,7 +80,7 @@ public final class WebRequests implements Counter {
     // Updates the second pointer
     if (secondPointer > -1) {
 
-      while (System.currentTimeMillis() - requestsReceived.peek(secondPointer) > millisecInSecond) {
+      while (System.currentTimeMillis() - requestsReceived.get(secondPointer) > millisecInSecond) {
         secondPointer--;
         if (secondPointer == -1) {
           return;

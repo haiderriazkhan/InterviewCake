@@ -14,7 +14,6 @@
 // This should return 5
 
 
-
 public class Cashier {
 
 

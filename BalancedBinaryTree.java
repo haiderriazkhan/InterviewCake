@@ -5,7 +5,6 @@
 // Write a method that determines whether a given binary tree is balanced as per the definition above.
 
 
-
 public class BalancedBinaryTree {
 
 

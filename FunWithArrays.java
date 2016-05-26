@@ -10,7 +10,7 @@ public class FunWithArrays {
 	public Double maxProfit(double[] A){
 
 		if (A == null || A.length < 2) {
-			return 0;
+			return 0d;
 		}
 		int len = A.length;
 

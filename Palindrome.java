@@ -16,15 +16,21 @@ public class Palindrome {
     Map<Character, Integer> charFreq = new HashMap<>(len);
 
     for (char c : s.toCharArray()) {
-        charFreq.containsKey(c) ? charFreq.put(c, charFreq.get(c) + 1) : charFreq.put(c, 1);
+
+        if (charFreq.containsKey(c)) {
+          charFreq.put(c, charFreq.get(c) + 1);
+        } else {
+          charFreq.put(c, 1);
+        }
+
     }
 
     int oddCharFreq = 0;
     for (Integer x : charFreq.values()) {
-        oddCharFreq += (x % 2) ? 0 : 1;
+        oddCharFreq += (x % 2 == 0) ? 0 : 1;
     }
 
-    if (len % 2 ) {
+    if (len % 2 == 0) {
       return oddCharFreq == 0;
     } else {
       return oddCharFreq == 1;
@@ -61,12 +67,12 @@ public class Palindrome {
     for (int subLen = 3; subLen <= len; subLen++) {
 
       // The starting index of the substring in question
-      for (int s=0; s <= len - subLen; s++) {
+      for (int i=0; i <= len - subLen; i++) {
 
-          int e = s + subLen - 1;
-          if  (isPalindromTable[s+1][e-1] && s.charAt(s) == s.charAt(e) ) {
-              isPalindromTable[s][e] = true;
-              startingIndex = s;
+          int e = i + subLen - 1;
+          if  (isPalindromTable[i+1][e-1] && s.charAt(i) == s.charAt(e) ) {
+              isPalindromTable[i][e] = true;
+              startingIndex = i;
               maxLength = subLen;
           }
 

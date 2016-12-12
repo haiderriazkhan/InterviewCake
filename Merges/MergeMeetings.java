@@ -1,3 +1,5 @@
+import java.util.*;
+
 // Given a list of doubles (2-tuples) where the first value represents the start time of a meeting and the second value represents the
 // end time of a meeting. Write a program that will traverse the list and merge overlapping meeting times until the remaining
 // time ranges do not overlap. Example :

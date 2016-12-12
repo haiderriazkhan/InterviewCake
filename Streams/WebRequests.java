@@ -1,3 +1,7 @@
+package Streams;
+import java.util.*;
+
+
 /*
 
 Interface Counter {

@@ -13,6 +13,7 @@
 
 // This should return 5
 
+import java.util.*;
 
 public class Cashier {
 

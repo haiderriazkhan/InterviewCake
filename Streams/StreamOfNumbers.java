@@ -1,3 +1,6 @@
+package Streams;
+import java.util.*;
+
 public class StreamOfNumbers {
 
   public void median(Scanner in) throws NoSuchElementException {

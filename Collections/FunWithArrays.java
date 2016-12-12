@@ -1,3 +1,6 @@
+import java.util.*;
+
+
 public class FunWithArrays {
 
 	private static final int[] EMPTY_INTEGER_ARRAY = new int[0];

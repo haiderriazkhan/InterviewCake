@@ -1,3 +1,5 @@
+import java.util.*;
+
 // We define a binary tree to be balanced if the difference between the depths of any two leaf nodes is no greater than one.
 // In other words, the difference between the depths of all possible pair of leaves in the tree must be
 // less than or equal to one.
